@@ -22,5 +22,8 @@
     "@playwright/test": "1.36.1",
     "@types/lodash": "4.14.195",
     "lodash": "4.17.21"
+  },
+  "dependencies": {
+    "jimp": "^0.22.10"
   }
 }
