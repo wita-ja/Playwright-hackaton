@@ -492,11 +492,8 @@ test("has title", async ({ page }) => {
     }
     const history = page.locator("#history-table");
     const trs = await history.locator("tbody tr").all();
-    move++;
+  
 
-    console.log(trs);
-    console.log(move);
-    console.log(trs[move]);
     const aiMoved = trs[trs.length - 1].locator("td").last();
     const aiMoveData = await aiMoved.textContent();
     const [smallBoardMove, cellMove] = aiMoveData.split("/");
