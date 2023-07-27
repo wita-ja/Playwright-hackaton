@@ -51,9 +51,30 @@ const answer = page.locator("#question-answer");
 // while(! await page.getByText(/Results/).isVisible()) {
 //     await answer.type(`${getAnswer(await question.textContent())}`);
 // }
-for (;! await page.getByText(/Results/).isVisible();) {
+await page.waitForEvent("");
+await page.evaluate(async () => {
+  const question = document.getElementById("question");
+  const answer = document.getElementById("question-answer") as HTMLInputElement;
+  while(!document.getElementById("results")) {
+    answer.value = `${getAnswer(question.textContent)}`
+    answer.dispatchEvent(
+      new Event("change", { bubbles: true, cancelable: true })
+    );
+  }
+})
+// for (;! await page.getByText(/Results/).isVisible();) {
     
-    await answer.type(`${getAnswer(await question.textContent())}`);
+//     await answer.type(`${getAnswer(await question.textContent())}`);
     
-}
+// }
 });
+
+const cellN = page.locator(".cell.N");
+const cellNE = page.locator(".cell.NE");
+const cellE = page.locator(".cell.E");
+const cellSE = page.locator(".cell.SE");
+const cellS = page.locator(".cell.S");
+const cellW = page.locator(".cell.W");
+const cellSW = page.locator(".cell.SW");
+const cellNW = page.locator(".cell.NW");
+const cellC = page.locator(".cell.C");
